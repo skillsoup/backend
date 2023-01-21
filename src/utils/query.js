@@ -104,15 +104,15 @@ class CohereModel
 
 
 
-co = new CohereModel();
+// co = new CohereModel();
 
-co.getJobSkills("hardware engineer at Apple")
-.then((a) => console.log(a));
-
-// co.categoriseJobSkills("charisma")
+// co.getJobSkills("hardware engineer at Apple")
 // .then((a) => console.log(a));
 
-// co.getJobSkillExplanation("Assassin's Creed 3", "Genghis Khan")
-// .then((a) => console.log(a));
+// // co.categoriseJobSkills("charisma")
+// // .then((a) => console.log(a));
+
+// // co.getJobSkillExplanation("Assassin's Creed 3", "Genghis Khan")
+// // .then((a) => console.log(a));
 
 
