@@ -1,5 +1,5 @@
 export class JobDto {
-    jobName: string; 
-    userData: Object; 
+    job_position: string; 
+    skills: Object; 
 }
 

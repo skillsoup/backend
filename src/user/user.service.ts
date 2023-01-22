@@ -44,7 +44,37 @@ export class UserService {
         };
     }
 
-    async jobSearch(jobDto: JobDto): Promise<any> { 
+    async explore(jobDto: JobDto): Promise<any> { 
+        let data;
+        let job_skills;
+
+        await this.co.getJobSkills(jobDto.job_position).
+            then((a) => {
+                job_skills = a;
+            });
+        job_skills = job_skills.split(', '); 
+        let unfound_skills = job_skills;
+        let found_skills = checkObjectElements(jobDto.skills, job_skills);
+
+        for (let skill in found_skills) { 
+            removeItemOnce(unfound_skills, skill); 
+        }
+
+        unfound_skills = unfound_skills.join(', ');
+        
+        await this.co.getJobSkillExplanation(unfound_skills, jobDto.job_position)
+            .then((a) => {
+                data = a;
+            });
+        
+        return {
+            "job_position": jobDto.job_position,
+            "skills": unfound_skills,
+            "advice": data
+        }
+
+    }
+    async jobSearch(jobDto: string): Promise<any> { 
         let data; 
         await this.co.getJobSkills(jobDto)
             .then((a) => {
@@ -94,4 +124,27 @@ function parseSentences(sentences) {
         parsedSentences.push(words);
     }
     return parsedSentences;
+}
+
+function checkObjectElements(obj, list) {
+    let foundElements = {};
+    for (const key in obj) {
+        foundElements[key] = [];
+        for (let i = 0; i < obj[key].length; i++) {
+            for (let j = 0; j < list.length; j++) {
+                if (obj[key][i].includes(list[j])) {
+                    foundElements[key].push(list[j]);
+                }
+            }
+        }
+    }
+    return foundElements;
+}
+
+function removeItemOnce(arr, value) {
+  var index = arr.indexOf(value);
+  if (index > -1) {
+    arr.splice(index, 1);
+  }
+  return arr;
 }

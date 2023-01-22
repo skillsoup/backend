@@ -63,7 +63,7 @@ output:`);
 
     getJobSkillExplanation(skill, job)
     {
-        return this.makeGenerateQuery(`provide an explanation on why ${skill} is important for being a ${job}`);
+        return this.makeGenerateQuery(`provide an explanation on why ${skill} is important for being a ${job} and how people should learn it`);
     }
 
     queryUserTechnical(userInput)

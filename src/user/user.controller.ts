@@ -13,6 +13,12 @@ export class UserController {
         return data;
     }
 
+    @Post('explore')
+    async explore(@Body() jobDto: JobDto) { 
+        let data = await this.userService.explore(jobDto);
+        return data; 
+    }
+        
     @Post('job_survey')
     async getJobSurvey(@Body() surveyDto: SurveyDto) { 
         let data = await this.userService.getJobSurvey(surveyDto);
@@ -20,7 +26,7 @@ export class UserController {
     }
     
     @Post('job_search')
-    async jobSearch(@Body() jobDto: JobDto) {
+    async jobSearch(@Body() jobDto: string) {
         let data = await this.userService.jobSearch(jobDto);
         return this.userService.jobSearch(jobDto);
     }
