@@ -1,4 +1,4 @@
-import { Controller, Get, Body } from '@nestjs/common';
+import { Controller, Get, Body, Post } from '@nestjs/common';
 import { JobDto } from './dto/job.dto';
 import { UserDto } from './dto/user.dto';
 import { UserService } from './user.service';
@@ -6,17 +6,17 @@ import { UserService } from './user.service';
 export class UserController {
     constructor(private readonly userService: UserService) { }
     
-    @Get('calculate_score') 
+    @Post('calculate_score') 
     getUserInput(@Body() userDto: UserDto) { 
         return this.userService.calculateScore(userDto);
     }
     
-    @Get('job_search')
+    @Post('job_search')
     jobSearch(@Body() jobDto: JobDto) {
         return this.userService.jobSearch(jobDto);
     }
 
-    @Get('generate_advice') 
+    @Post('generate_advice') 
     generateAdvice(@Body() adviceDto: JobDto) {
         return this.userService.generateAdvice(adviceDto);
     }
