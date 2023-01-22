@@ -16,6 +16,10 @@ export class UserService {
         await this.co.queryUserInput(userDto.text)
             .then((a) => {
                 data = a;
+            }).catch((err) => {
+                console.log(err.response.data);
+                throw new Error("Error while making request");
+                ;
             });
         return data;
         
