@@ -1,8 +1,11 @@
 const cohere = require('cohere-ai');
 cohere.init('DICHA29yySOiu8pYIebMzyrFvKLjdivZMZWRNT8Z');
 
-class CohereModel
+export class CohereModel
 {
+    model: string;
+    max_tokens: number;
+    temperature: number;
     constructor()
     {
         this.model = "command-xlarge-nightly";
@@ -150,8 +153,9 @@ output:`);
 
 
 
-co = new CohereModel();
+// co = new CohereModel();
 
+<<<<<<< HEAD:src/utils/query.js
 // co.categoriseAllSkills(["Coding", "Public speaking", "Networking"])
 // .then((a) => {
 //     console.log(a);
@@ -162,11 +166,22 @@ co = new CohereModel();
 
 // co.categoriseJobSkills("Negotiation")
 // .then((a) => console.log(a));
+=======
+// // co.getJobSkills("hardware engineer")
+// // .then((a) => console.log(a));
 
-// co.getJobSkillExplanation("Assassin's Creed 3", "Genghis Khan")
-// .then((a) => console.log(a));
+// // co.categoriseJobSkills("charisma")
+// // .then((a) => console.log(a));
+>>>>>>> f3bd50931deb2ac26d91e25b2b64adfe57d8f117:src/utils/query.ts
 
+// // co.getJobSkillExplanation("Assassin's Creed 3", "Genghis Khan")
+// // .then((a) => console.log(a));
+
+<<<<<<< HEAD:src/utils/query.js
 // co.queryUserInput(``)
+=======
+// co.queryUserInput(`Hey everyone, I'm Ishan. I'm a second year CS student at UofT. I have interned at RBC where I got lots of experience in ExpressJS, ReactJS, JavaScript/ TypeScript, FastAPI, HTML, and CSS. Some other languages/tech that I know include Python, Java, React Native, SQL, MariaDB, and MongoDB. I am most interested in machine learning and backend development. Feel free to message me if you are looking for a team member. Here's my website: https://ishan-singh-3005.github.io/ishan/#home`)
+>>>>>>> f3bd50931deb2ac26d91e25b2b64adfe57d8f117:src/utils/query.ts
 // .then((a) => {console.log(a)});
 
 // co.queryUserTechnical("I think that a good leader is someone who can make decisions while also listening to others and being willing to admit when you’re wrong and course correct. In my last role, my team and I were responsible for giving a big presentation to a prospective client. I quickly assigned different tasks to members of my team, but the project never really got moving. I gave everyone an opportunity to share their input and concerns, and it turned out that they were struggling in the roles I’d given them. I ended up switching a few people around. Meanwhile, the employee I’d assigned to give the presentation was nervous, but still wanted to give it a try. I worked with them to make sure they were ready and even held a practice session so that they could rehearse in a more comfortable environment. When the time came for the real thing, they nailed it! We landed the client and the company still has the account to this day. And that employee became a go-to person for important client presentations. I’m really glad I took the time to listen to everyone’s concerns so that I could re-evaluate my approach and help my team be the best it could be.")

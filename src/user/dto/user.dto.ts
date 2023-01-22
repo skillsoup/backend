@@ -1,3 +1,3 @@
 export class UserDto {
-    userData: Object;
+    text: string;
 }
