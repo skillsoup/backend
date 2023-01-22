@@ -14,9 +14,37 @@ export class CohereModel
 
     }
 
-    setMaxTokens(num)
+    getSpecificSkills(skillAnswers)
     {
-        this.max_tokens = num;
+        let userSkills = [] 
+        let categories = ["communication", "resilience", "teamwork", "organization", "technical"];
+
+        const questions = {
+            "communication": "How would you handle a situation where you noticed your supervisor made an error in a report or presentation?",
+            "resilience": "How do you stay motivated and engaged during long-term projects or tasks?",
+            "teamwork": "Can you give an example of a successful team project you have been a part of and your role in it?",
+            "organization": "How do you prioritize daily work tasks?",
+            "technical": "Tell me about your technical background."
+        }
+
+        for (let i = 0; i < 5; i++)
+        {
+            let skill = categories[i];
+            this.makeGenerateQuery(`this program will list down specific technical skills a job should have in a list format. Here are some examples:
+            question: How would you handle a situation where you noticed your supervisor made an error in a report or presentation?
+            answer: First, I would gather all the necessary information and evidence to support my claim that an error has been made. Then, I would schedule a meeting or speak with my supervisor privately to discuss the issue. During the conversation, I would present the evidence and explain how the error could be corrected. Additionally, if the error is significant, I would also suggest any potential impacts or consequences that could arise from the mistake, and how we could mitigate them. And, it is important to find the solution that is best for the company, the team and the supervisor.
+            extracted skills: "Gathering information and evidence, Scheduling and conducting meetings, Presenting information clearly and effectively, Identifying and addressing errors, Problem-solving and decision-making, Communicating effectively with supervisors, Understanding the impacts of mistakes, Mitigating consequences, Prioritizing company, team, and supervisor's interests."
+
+            question: ${questions[skill]}
+            answer: ${skillAnswers[skill]}
+            extracted skills: 
+        `).then((a) => userSkills.push(a));
+        }
+
+        return userSkills
+        
+        // TODO: output is in the form of string, e.g "Gathering information and evidence, Scheduling and conducting meetings, Presenting information clearly and effectively, Identifying and addressing errors, Problem-solving and decision-making, Communicating effectively with supervisors, Understanding the impacts of mistakes, Mitigating consequences, Prioritizing company, team, and supervisor's interests."
+        // need to remove commas to form individual skill strings
     }
 
     getJobSkills(title)
