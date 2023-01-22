@@ -1,8 +1,11 @@
 const cohere = require('cohere-ai');
 cohere.init('DICHA29yySOiu8pYIebMzyrFvKLjdivZMZWRNT8Z');
 
-class CohereModel
+export class CohereModel
 {
+    model: string;
+    max_tokens: number;
+    temperature: number;
     constructor()
     {
         this.model = "command-xlarge-nightly";
@@ -137,17 +140,17 @@ class CohereModel
 
 
 
-co = new CohereModel();
+// co = new CohereModel();
 
-// co.getJobSkills("hardware engineer")
-// .then((a) => console.log(a));
+// // co.getJobSkills("hardware engineer")
+// // .then((a) => console.log(a));
 
-// co.categoriseJobSkills("charisma")
-// .then((a) => console.log(a));
+// // co.categoriseJobSkills("charisma")
+// // .then((a) => console.log(a));
 
-// co.getJobSkillExplanation("Assassin's Creed 3", "Genghis Khan")
-// .then((a) => console.log(a));
+// // co.getJobSkillExplanation("Assassin's Creed 3", "Genghis Khan")
+// // .then((a) => console.log(a));
 
-co.queryUserInput(`Hey everyone, I'm Ishan. I'm a second year CS student at UofT. I have interned at RBC where I got lots of experience in ExpressJS, ReactJS, JavaScript/ TypeScript, FastAPI, HTML, and CSS. Some other languages/tech that I know include Python, Java, React Native, SQL, MariaDB, and MongoDB. I am most interested in machine learning and backend development. Feel free to message me if you are looking for a team member. Here's my website: https://ishan-singh-3005.github.io/ishan/#home`)
-.then((a) => {console.log(a)});
+// co.queryUserInput(`Hey everyone, I'm Ishan. I'm a second year CS student at UofT. I have interned at RBC where I got lots of experience in ExpressJS, ReactJS, JavaScript/ TypeScript, FastAPI, HTML, and CSS. Some other languages/tech that I know include Python, Java, React Native, SQL, MariaDB, and MongoDB. I am most interested in machine learning and backend development. Feel free to message me if you are looking for a team member. Here's my website: https://ishan-singh-3005.github.io/ishan/#home`)
+// .then((a) => {console.log(a)});
 

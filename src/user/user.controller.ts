@@ -7,8 +7,9 @@ export class UserController {
     constructor(private readonly userService: UserService) { }
     
     @Post('calculate_score') 
-    getUserInput(@Body() userDto: UserDto) { 
-        return this.userService.calculateScore(userDto);
+    async getUserInput(@Body() userDto: UserDto) { 
+        let data = await this.userService.calculateScore(userDto);
+        return data;
     }
     
     @Post('job_search')
