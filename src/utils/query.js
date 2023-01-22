@@ -7,13 +7,36 @@ class CohereModel
     {
         this.model = "command-xlarge-nightly";
         this.max_tokens = 500;
-        this.temperature = 0.6;
+        this.temperature = 0.5;
 
     }
 
     getJobSkills(title)
     {
-        return this.makeGenerateQuery(`list down 10 specific technical skills that every ${title} should have\n`);
+        return this.makeGenerateQuery(`
+        this program will list down specific technical skills a job should have in a JSON format. Here are some examples:
+
+        prompt: list down 10 specific technical skills a software engineer should have in a JSON format.
+        
+        output:
+        {
+            "technical_skills": [
+            "JavaScript",
+            "C++",
+            "Software Design",
+            "Software testing",
+            "Software maintenance",
+            "Teamwork",
+            "Communication",
+            "HTML/CSS",
+            "Django",
+            "MySQL"
+            ]
+        }
+
+        prompt: list down 10 specific technical skills that every ${title} should have in the same format as in the example.
+                
+        output:`);
     }
 
     getJobSkillExplanation(skill, job)
@@ -21,6 +44,16 @@ class CohereModel
         return this.makeGenerateQuery(`provide an explanation on why ${skill} is important for being a ${job}`);
     }
 
+    queryUserInput(userInput)
+    {
+        return this.makeGenerateQuery(`${userInput} \n \n Parse the above message for technical skills into the format:
+        "skills" : ["skill name 1", "skill name 2", ...] 
+
+        without any other information.
+        `);
+    }
+
+    // send skill sets to ai and get advice
     async categoriseJobSkills(title)
     {
         const response = await cohere.classify({ 
@@ -104,15 +137,17 @@ class CohereModel
 
 
 
-// co = new CohereModel();
+co = new CohereModel();
 
-// co.getJobSkills("hardware engineer at Apple")
+// co.getJobSkills("hardware engineer")
 // .then((a) => console.log(a));
 
-// // co.categoriseJobSkills("charisma")
-// // .then((a) => console.log(a));
+// co.categoriseJobSkills("charisma")
+// .then((a) => console.log(a));
 
-// // co.getJobSkillExplanation("Assassin's Creed 3", "Genghis Khan")
-// // .then((a) => console.log(a));
+// co.getJobSkillExplanation("Assassin's Creed 3", "Genghis Khan")
+// .then((a) => console.log(a));
 
+co.queryUserInput(`Hey everyone, I'm Ishan. I'm a second year CS student at UofT. I have interned at RBC where I got lots of experience in ExpressJS, ReactJS, JavaScript/ TypeScript, FastAPI, HTML, and CSS. Some other languages/tech that I know include Python, Java, React Native, SQL, MariaDB, and MongoDB. I am most interested in machine learning and backend development. Feel free to message me if you are looking for a team member. Here's my website: https://ishan-singh-3005.github.io/ishan/#home`)
+.then((a) => {console.log(a)});
 

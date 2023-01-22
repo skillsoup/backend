@@ -24,6 +24,8 @@
     "@nestjs/core": "^9.0.0",
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/typeorm": "^9.0.1",
+    "axios": "^1.2.3",
+    "cheerio": "^1.0.0-rc.12",
     "cohere-ai": "^5.0.2",
     "mysql2": "^2.3.3",
     "reflect-metadata": "^0.1.13",
