@@ -1,5 +1,6 @@
 import { Controller, Get, Body, Post } from '@nestjs/common';
 import { JobDto } from './dto/job.dto';
+import { SurveyDto } from './dto/survey.dto';
 import { UserDto } from './dto/user.dto';
 import { UserService } from './user.service';
 @Controller('user')
@@ -11,14 +12,22 @@ export class UserController {
         let data = await this.userService.calculateScore(userDto);
         return data;
     }
+
+    @Post('job_survey')
+    async getJobSurvey(@Body() surveyDto: SurveyDto) { 
+        let data = await this.userService.getJobSurvey(surveyDto);
+        return data;
+    }
     
     @Post('job_search')
-    jobSearch(@Body() jobDto: JobDto) {
+    async jobSearch(@Body() jobDto: JobDto) {
+        let data = await this.userService.jobSearch(jobDto);
         return this.userService.jobSearch(jobDto);
     }
 
     @Post('generate_advice') 
-    generateAdvice(@Body() adviceDto: JobDto) {
+    async generateAdvice(@Body() adviceDto: JobDto) {
+        let data = await this.userService.generateAdvice(adviceDto);
         return this.userService.generateAdvice(adviceDto);
     }
     

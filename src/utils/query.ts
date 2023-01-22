@@ -14,7 +14,7 @@ export class CohereModel
 
     }
 
-    getSpecificSkills(skillAnswers)
+    async getSpecificSkills(skillAnswers)
     {
         let userSkills = [] 
         let categories = ["communication", "resilience", "teamwork", "organization", "technical"];
@@ -30,7 +30,7 @@ export class CohereModel
         for (let i = 0; i < 5; i++)
         {
             let skill = categories[i];
-            this.makeGenerateQuery(`this program will list down specific technical skills a job should have in a list format. Here are some examples:
+            await this.makeGenerateQuery(`this program will list down specific technical skills a job should have in a list format. Here are some examples:
             question: How would you handle a situation where you noticed your supervisor made an error in a report or presentation?
             answer: First, I would gather all the necessary information and evidence to support my claim that an error has been made. Then, I would schedule a meeting or speak with my supervisor privately to discuss the issue. During the conversation, I would present the evidence and explain how the error could be corrected. Additionally, if the error is significant, I would also suggest any potential impacts or consequences that could arise from the mistake, and how we could mitigate them. And, it is important to find the solution that is best for the company, the team and the supervisor.
             extracted skills: "Gathering information and evidence, Scheduling and conducting meetings, Presenting information clearly and effectively, Identifying and addressing errors, Problem-solving and decision-making, Communicating effectively with supervisors, Understanding the impacts of mistakes, Mitigating consequences, Prioritizing company, team, and supervisor's interests."
@@ -181,7 +181,7 @@ output:`);
 
 
 
-// co = new CohereModel();
+let co = new CohereModel();
 
 // co.categoriseAllSkills(["Coding", "Public speaking", "Networking"])
 // .then((a) => {
@@ -202,3 +202,6 @@ output:`);
 
 // co.queryUserTechnical("I think that a good leader is someone who can make decisions while also listening to others and being willing to admit when you’re wrong and course correct. In my last role, my team and I were responsible for giving a big presentation to a prospective client. I quickly assigned different tasks to members of my team, but the project never really got moving. I gave everyone an opportunity to share their input and concerns, and it turned out that they were struggling in the roles I’d given them. I ended up switching a few people around. Meanwhile, the employee I’d assigned to give the presentation was nervous, but still wanted to give it a try. I worked with them to make sure they were ready and even held a practice session so that they could rehearse in a more comfortable environment. When the time came for the real thing, they nailed it! We landed the client and the company still has the account to this day. And that employee became a go-to person for important client presentations. I’m really glad I took the time to listen to everyone’s concerns so that I could re-evaluate my approach and help my team be the best it could be.")
 // .then((a) => {console.log(a)});
+
+
+co.getSpecificSkills({ "communication": "asdiulfhsdaluifhsalui", "organization": "yujgjygjyg", "resilience": "kjshfugldahflkjadh;fioreh", "teamwork": "kfshvndflusihgdkjhfjklh", "technical": "uidflhgudfh" }).then((a) => { console.log(a) });
